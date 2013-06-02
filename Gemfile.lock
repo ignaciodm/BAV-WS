@@ -33,6 +33,7 @@ GEM
     childprocess (0.3.9)
       ffi (~> 1.0, >= 1.0.11)
     coderay (1.0.9)
+    database_cleaner (1.0.1)
     diff-lcs (1.2.4)
     erubis (2.7.0)
     execjs (1.4.0)
@@ -151,6 +152,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  database_cleaner
   guard
   guard-bundler
   guard-rspec
