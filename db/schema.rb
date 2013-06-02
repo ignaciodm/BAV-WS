@@ -14,9 +14,11 @@
 ActiveRecord::Schema.define(:version => 20130502054916) do
 
   create_table "addresses", :force => true do |t|
-    t.string   "name"
-    t.string   "street"
-    t.integer  "number"
+    t.string   "name",       :null => false
+    t.string   "street",     :null => false
+    t.integer  "number",     :null => false
+    t.integer  "floor"
+    t.string   "flat"
     t.string   "details"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
