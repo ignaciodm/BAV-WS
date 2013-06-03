@@ -16,5 +16,8 @@
 
 ActiveSupport::Inflector.inflections do |inflect|
    inflect.irregular 'direccion', 'direcciones'
+   inflect.irregular 'provincia', 'provincias'
+   inflect.irregular 'partido', 'partidos'
+   inflect.irregular 'localidad', 'localidades'
 end
 

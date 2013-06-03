@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130502054916) do
+ActiveRecord::Schema.define(:version => 20130603025718) do
 
   create_table "direcciones", :force => true do |t|
     t.string   "descripcion",  :null => false
@@ -22,6 +22,26 @@ ActiveRecord::Schema.define(:version => 20130502054916) do
     t.string   "comentarios"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
+  end
+
+  create_table "localidades", :force => true do |t|
+    t.string   "nombre",     :null => false
+    t.integer  "partido_id", :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "partidos", :force => true do |t|
+    t.string   "nombre",       :null => false
+    t.integer  "provincia_id", :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  create_table "provincias", :force => true do |t|
+    t.string   "nombre",     :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
 end
