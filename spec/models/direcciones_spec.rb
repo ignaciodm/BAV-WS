@@ -63,14 +63,14 @@ describe Direccion do
       context 'when numero is nil' do
         it 'should not save' do
           update({numero: nil})
-          @direccion.errors[:numero][0].should == "is not a numero"
+          @direccion.errors[:numero][0].should == "is not a number"
         end
       end
 
       context 'when numero is empty' do
         it 'should not save' do
           update({numero: ''})
-          @direccion.errors[:numero][0].should == "is not a numero"
+          @direccion.errors[:numero][0].should == "is not a number"
         end
       end
 
@@ -107,7 +107,11 @@ describe Direccion do
       context 'when piso is not a numero' do
         it 'should save' do
           update({piso: 'piso'})
+<<<<<<< HEAD
           @direccion.errors[:piso][0].should == "is not a numero"
+=======
+          @direccion.errors[:piso][0].should == "is not a number"
+>>>>>>> Se "castellaniza" la aplicacion
         end
       end
 
