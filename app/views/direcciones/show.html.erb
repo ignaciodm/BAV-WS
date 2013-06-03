@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Descripcion:</b>
+  <%= @direccion.descripcion %>
+</p>
+
+<p>
+  <b>Calle:</b>
+  <%= @direccion.calle %>
+</p>
+
+<p>
+  <b>Numero:</b>
+  <%= @direccion.numero %>
+</p>
+
+<p>
+  <b>Comentarios:</b>
+  <%= @direccion.comentarios %>
+</p>
+
+
+<%= link_to 'Edit', edit_direccion_path(@direccion) %> |
+<%= link_to 'Back', direcciones_path %>

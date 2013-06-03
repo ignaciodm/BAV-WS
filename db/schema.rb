@@ -13,15 +13,15 @@
 
 ActiveRecord::Schema.define(:version => 20130502054916) do
 
-  create_table "addresses", :force => true do |t|
-    t.string   "name",       :null => false
-    t.string   "street",     :null => false
-    t.integer  "number",     :null => false
-    t.integer  "floor"
-    t.string   "flat"
-    t.string   "details"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+  create_table "direcciones", :force => true do |t|
+    t.string   "descripcion",  :null => false
+    t.string   "calle",        :null => false
+    t.integer  "numero",       :null => false
+    t.integer  "piso"
+    t.string   "departamento"
+    t.string   "comentarios"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
 end
