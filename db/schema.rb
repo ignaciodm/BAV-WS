@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130604134502) do
+ActiveRecord::Schema.define(:version => 20130605131826) do
 
   create_table "direcciones", :force => true do |t|
     t.string   "descripcion",  :null => false
@@ -32,6 +32,9 @@ ActiveRecord::Schema.define(:version => 20130604134502) do
     t.datetime "updated_at", :null => false
   end
 
+  add_index "localidades", ["nombre", "partido_id"], :name => "index_localidades_on_nombre_and_partido_id", :unique => true
+  add_index "localidades", ["nombre"], :name => "index_localidades_on_nombre"
+
   create_table "partidos", :force => true do |t|
     t.string   "nombre",       :null => false
     t.integer  "provincia_id", :null => false
@@ -39,10 +42,15 @@ ActiveRecord::Schema.define(:version => 20130604134502) do
     t.datetime "updated_at",   :null => false
   end
 
+  add_index "partidos", ["nombre", "provincia_id"], :name => "index_partidos_on_nombre_and_provincia_id", :unique => true
+  add_index "partidos", ["nombre"], :name => "index_partidos_on_nombre"
+
   create_table "provincias", :force => true do |t|
     t.string   "nombre",     :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  add_index "provincias", ["nombre"], :name => "index_provincias_on_nombre", :unique => true
 
 end
