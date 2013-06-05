@@ -5,7 +5,10 @@ describe Direccion do
   describe 'Validations' do
 
     before(:each) do
-      @direccion = Direccion.new({descripcion: 'name', calle: 'calle', numero: 10})
+      @provincia = Provincia.create(nombre: 'Buenos Aires')
+      @partido = Partido.create(nombre: 'San Isidro', provincia_id: @provincia)
+      @localidad = Localidad.create(nombre: 'Beccar', partido_id: @partido)
+      @direccion = Direccion.new({descripcion: 'mi casa', calle: 'calle', numero: 10, localidad_id: @localidad})
     end
 
     def update(h)
@@ -13,24 +16,33 @@ describe Direccion do
       @direccion.save
     end
 
-    describe 'name' do
-      context 'when name is nil' do
+    describe 'Una direccion' do
+      it 'should be created with all attributes' do
+        @direccion.localidad.nombre.should == 'Beccar'
+        @direccion.partido.nombre == 'San Isidro'
+        @direccion.provincia.nombre == 'San Isidro'
+
+      end
+    end
+
+    describe 'nombre' do
+      context 'when nombre is nil' do
         it 'should not save' do
           update({descripcion: nil})
           @direccion.errors[:descripcion].should == ["can't be blank", "is too short (minimum is 2 characters)"]
         end
       end
 
-      context 'when name is empty' do
+      context 'when nombre is empty' do
         it 'should not save' do
           update({descripcion: ''})
           @direccion.errors[:descripcion].should == ["can't be blank", "is too short (minimum is 2 characters)"]
         end
       end
 
-      context 'when name is valid' do
+      context 'when nombre is valid' do
         it 'should save' do
-          update({descripcion: 'name'})
+          update({descripcion: 'mi casa'})
           @direccion.errors.empty?.should == true
         end
       end
@@ -159,6 +171,22 @@ describe Direccion do
         end
       end
 
+    end
+
+    describe 'localidad' do
+      context 'when localidad is nil' do
+        it 'should not save' do
+          update({localidad_id: nil})
+          @direccion.errors[:localidad_id].should == ["can't be blank"]
+        end
+      end
+
+      context 'when localidad is valid' do
+        it 'should save' do
+          update({localidad_id: @localidad})
+          @direccion.errors.empty?.should == true
+        end
+      end
     end
 
   end
