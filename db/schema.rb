@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130607143134) do
+ActiveRecord::Schema.define(:version => 20130608004338) do
 
   create_table "comisarias", :force => true do |t|
     t.string   "nombre",     :limit => 50,  :null => false
@@ -21,6 +21,13 @@ ActiveRecord::Schema.define(:version => 20130607143134) do
     t.datetime "created_at",                :null => false
     t.datetime "updated_at",                :null => false
   end
+
+  create_table "comisarias_localidades", :id => false, :force => true do |t|
+    t.integer "comisaria_id"
+    t.integer "localidad_id"
+  end
+
+  add_index "comisarias_localidades", ["comisaria_id", "localidad_id"], :name => "index_comisarias_localidades_on_comisaria_id_and_localidad_id", :unique => true
 
   create_table "direcciones", :force => true do |t|
     t.string   "descripcion",  :null => false
@@ -43,6 +50,11 @@ ActiveRecord::Schema.define(:version => 20130607143134) do
 
   add_index "localidades", ["nombre", "partido_id"], :name => "index_localidades_on_nombre_and_partido_id", :unique => true
   add_index "localidades", ["nombre"], :name => "index_localidades_on_nombre"
+
+  create_table "localidades_comisarias", :id => false, :force => true do |t|
+    t.integer "localidad_id"
+    t.integer "comisaria_id"
+  end
 
   create_table "partidos", :force => true do |t|
     t.string   "nombre",       :null => false

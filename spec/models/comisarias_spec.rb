@@ -8,7 +8,8 @@ describe Comisaria do
       @provincia = Provincia.create(nombre: 'Buenos Aires')
       @partido = Partido.create(nombre: 'San Isidro', provincia_id: @provincia)
       @localidad = Localidad.create(nombre: 'Beccar', partido_id: @partido)
-      @comisaria = Comisaria.new({nombre: 'Comisaria 44', calle: 'calle', numero: 10, telefono: '4643-1282'})
+      @another_localidad = Localidad.create(nombre: 'Otra Localidad', partido_id: @partido)
+      @comisaria = Comisaria.new({nombre: 'Comisaria 44', calle: 'calle', numero: 10, telefono: '4643-1282', localidades: [@localidad, @another_localidad]})
     end
 
     def update(h)
@@ -16,14 +17,14 @@ describe Comisaria do
       @comisaria.save
     end
 
-    #describe 'Una Comisaria' do
-    #  it 'should be created with all attributes' do
-    #    @comisaria.localidad.nombre.should == 'Beccar'
-    #    @comisaria.localidad.partido.nombre == 'San Isidro'
-    #    @comisaria.localidad.partido.provincia.nombre == 'San Isidro'
-    #
-    #  end
-    #end
+    describe 'Una Comisaria' do
+      it 'should be created with all attributes' do
+        @comisaria.localidades.first.nombre.should == 'Beccar'
+        @comisaria.localidades.first.partido.nombre == 'San Isidro'
+        @comisaria.localidades.first.partido.provincia.nombre == 'San Isidro'
+
+      end
+    end
 
     describe 'nombre' do
       context 'when nombre is nil' do
@@ -90,6 +91,15 @@ describe Comisaria do
         it 'should save' do
           @comisaria.save
           @comisaria.errors.empty?.should == true
+        end
+      end
+    end
+
+    describe 'localidades' do
+      context 'when trying to assing the same localidad twice'  do
+        it 'should raise' do
+          @comisaria.save
+          lambda {@comisaria.localidades << @localidad}.should raise_error(ActiveRecord::RecordNotUnique)
         end
       end
     end
