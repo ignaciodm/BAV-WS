@@ -1,4 +1,6 @@
 BAVWs::Application.routes.draw do
+  resources :comisarias
+
   resources :direcciones
 
   # The priority is based upon order of creation:

@@ -6,9 +6,9 @@ describe Direccion do
 
     before(:each) do
       @provincia = Provincia.create(nombre: 'Buenos Aires')
-      @partido = Partido.create(nombre: 'San Isidro', provincia_id: @provincia)
-      @localidad = Localidad.create(nombre: 'Beccar', partido_id: @partido)
-      @direccion = Direccion.new({descripcion: 'mi casa', calle: 'calle', numero: 10, localidad_id: @localidad})
+      @partido = Partido.create(nombre: 'San Isidro', provincia_id: @provincia.id)
+      @localidad = Localidad.create(nombre: 'Beccar', partido_id: @partido.id)
+      @direccion = Direccion.new({descripcion: 'mi casa', calle: 'calle', numero: 10, localidad_id: @localidad.id})
     end
 
     def update(h)
@@ -183,7 +183,7 @@ describe Direccion do
 
       context 'when localidad is valid' do
         it 'should save' do
-          update({localidad_id: @localidad})
+          update({localidad_id: @localidad.id})
           @direccion.errors.empty?.should == true
         end
       end

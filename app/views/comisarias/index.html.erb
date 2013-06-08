@@ -1,0 +1,30 @@
+<h1>Listing comisarias</h1>
+
+<table>
+  <tr>
+    <th>Nombre</th>
+    <th>Calle</th>
+    <th>Numero</th>
+    <th>Telefono</th>
+    <th>Localidad</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @comisarias.each do |comisaria| %>
+  <tr>
+    <td><%= comisaria.nombre %></td>
+    <td><%= comisaria.calle %></td>
+    <td><%= comisaria.numero %></td>
+    <td><%= comisaria.telefono %></td>
+    <td><%= link_to 'Show', comisaria %></td>
+    <td><%= link_to 'Edit', edit_comisaria_path(comisaria) %></td>
+    <td><%= link_to 'Destroy', comisaria, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Comisaria', new_comisaria_path %>
