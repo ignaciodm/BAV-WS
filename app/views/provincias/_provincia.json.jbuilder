@@ -1,0 +1,1 @@
+json.(provincia, :id, :nombre)

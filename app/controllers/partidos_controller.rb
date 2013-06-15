@@ -5,19 +5,12 @@ class PartidosController < ApplicationController
   # GET /partidos.json
   # GET /provincias/provincia_id/partidos.json
   def index
-    respond_to do |format|
-      format.json { render json: @partidos }
-    end
   end
 
   # GET /partidos/1.json
   # GET /provincias/provincia_id/partidos/id.json
   def show
-    partido = Partido.find(params[:id])
-
-    respond_to do |format|
-      format.json { render json: partido }
-    end
+    @partido = Partido.find(params[:id])
   end
 
   private

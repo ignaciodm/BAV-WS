@@ -5,19 +5,21 @@ class LocalidadesController < ApplicationController
   before_filter :find_localidades, only:[:index]
 
   def index
-    respond_to do |format|
-      format.json { render json: @localidades }
-    end
   end
 
   # GET /provincia/provincia_id/partidos/partido_id/localidades.json
   # GET /localidades/1.json
   def show
-    localidad = Localidad.find(params[:id])
+    @localidad = Localidad.find(params[:id])
+  end
+
+  def comisarias
+    @localidad = Localidad.find(params[:id])
 
     respond_to do |format|
-      format.json { render json: localidad }
+      format.json { render json: @localidad.comisarias }
     end
+
   end
 
   private

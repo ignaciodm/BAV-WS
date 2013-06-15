@@ -23,6 +23,8 @@ end
 
 gem 'jquery-rails'
 
+gem 'jbuilder'
+
 group :test do
   gem 'rspec-rails', '~> 2.0'
 

@@ -3,22 +3,12 @@ class ComisariasController < ApplicationController
   # GET /comisarias.json
   def index
     @comisarias = Comisaria.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @comisarias }
-    end
   end
 
   # GET /comisarias/1
   # GET /comisarias/1.json
   def show
     @comisaria = Comisaria.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @comisaria }
-    end
   end
 
   # GET /comisarias/new

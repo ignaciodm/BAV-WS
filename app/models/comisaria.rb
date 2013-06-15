@@ -8,4 +8,10 @@ class Comisaria < ActiveRecord::Base
   validates :numero, :numericality => true
   validates :telefono, :presence => true, :length => { :minimum => 2, maximum: 50}
 
+  def as_json(options={})
+    ret = super(:only => [:id, :calle, :nombre, :numero, :telefono])
+    ret[:localidades] = localidades.as_json
+    ret
+  end
+
 end

@@ -1,0 +1,1 @@
+json.(localidad, :id, :nombre)

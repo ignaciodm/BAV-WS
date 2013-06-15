@@ -119,11 +119,7 @@ describe Direccion do
       context 'when piso is not a numero' do
         it 'should save' do
           update({piso: 'piso'})
-<<<<<<< HEAD
-          @direccion.errors[:piso][0].should == "is not a numero"
-=======
           @direccion.errors[:piso][0].should == "is not a number"
->>>>>>> Se "castellaniza" la aplicacion
         end
       end
 
