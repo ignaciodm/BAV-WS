@@ -1,19 +1,9 @@
 BAVWs::Application.routes.draw do
   resources :comisarias
-
   resources :direcciones
-
-  resources :provincias do
-    resources :partidos
-  end
-
-  resources :partidos do
-    resources :localidades
-  end
-
-  resources :localidades do
-    resources :comisarias
-  end
+  resources :provincias
+  resources :partidos
+  resources :localidades
 
 
   # The priority is based upon order of creation:
