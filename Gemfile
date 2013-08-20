@@ -13,7 +13,7 @@ gem 'pg'
 # in production environments by default.
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
-  #gem 'coffee-rails', '~> 3.2.1'
+  gem 'coffee-rails', '~> 3.2.1'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby
@@ -24,6 +24,12 @@ end
 gem 'jquery-rails'
 
 gem 'jbuilder'
+
+#bein activeadmin
+gem 'activeadmin'
+#if you are using Rails >= 3.1, you must also include a beta version of MetaSearch
+gem "meta_search",    '>= 1.1.0.pre'
+#end activeadmin
 
 group :test do
   gem 'rspec-rails', '~> 2.0'
