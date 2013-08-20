@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130608004338) do
+ActiveRecord::Schema.define(:version => 20130819233854) do
 
   create_table "comisarias", :force => true do |t|
     t.string   "nombre",     :limit => 50,  :null => false
@@ -39,7 +39,10 @@ ActiveRecord::Schema.define(:version => 20130608004338) do
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
     t.integer  "localidad_id", :null => false
+    t.integer  "usuario_id",   :null => false
   end
+
+  add_index "direcciones", ["descripcion", "usuario_id"], :name => "index_direcciones_on_descripcion_and_usuario_id", :unique => true
 
   create_table "localidades", :force => true do |t|
     t.string   "nombre",     :null => false
@@ -73,5 +76,14 @@ ActiveRecord::Schema.define(:version => 20130608004338) do
   end
 
   add_index "provincias", ["nombre"], :name => "index_provincias_on_nombre", :unique => true
+
+  create_table "usuarios", :force => true do |t|
+    t.string   "nombre",     :limit => 50,                    :null => false
+    t.string   "apellido",   :limit => 50,                    :null => false
+    t.string   "dni",        :limit => 25,                    :null => false
+    t.boolean  "bloqueado",                :default => false
+    t.datetime "created_at",                                  :null => false
+    t.datetime "updated_at",                                  :null => false
+  end
 
 end

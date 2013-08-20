@@ -1,7 +1,8 @@
 class Direccion < ActiveRecord::Base
-  attr_accessible :comentarios, :descripcion, :numero, :calle, :piso, :departamento, :localidad_id
+  attr_accessible :comentarios, :descripcion, :numero, :calle, :piso, :departamento, :localidad_id, :usuario_id
 
   belongs_to :localidad
+  belongs_to :usuario
 
   validates :descripcion, :presence => true, :length => { :minimum => 2 }
   validates :calle, :presence => true, :length => { :minimum => 2 }

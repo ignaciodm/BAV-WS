@@ -20,6 +20,7 @@ ActiveSupport::Inflector.inflections do |inflect|
    inflect.irregular 'partido', 'partidos'
    inflect.irregular 'localidad', 'localidades'
    inflect.irregular 'comisaria', 'comisarias'
+   inflect.irregular 'usuario', 'usuarios'
 
 end
 
