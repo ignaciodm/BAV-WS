@@ -65,5 +65,8 @@ module BAVWs
     # Based on https://devcenter.heroku.com/articles/rails-asset-pipeline#troubleshooting
     config.assets.initialize_on_precompile = false  #Heroku falla sin esta linea
 
+
+    config.action_mailer.default_url_options = { :host => 'localhost' }
+
   end
 end
