@@ -7,7 +7,13 @@ describe Usuario do
     before(:each) do
       @direccion = Direccion.new({descripcion: 'mi casa', calle: 'calle', numero: 10, localidad_id: 1})
       @another_direccion = Direccion.new({descripcion: 'mi casa 2', calle: 'calle', numero: 10, localidad_id: 1})
-      @usuario = Usuario.create!({nombre: 'Ignacio', apellido: 'De Maio', dni: '34108888', direcciones: [@direccion, @another_direccion]})
+      @usuario = Usuario.create!({nombre: 'Ignacio',
+                                  apellido: 'De Maio',
+                                  dni: '34108888',
+                                  email: 'ignaciodemaio@gmail.com',
+                                  password: 'nacho123',
+                                  password_confirmation: 'nacho123',
+                                  direcciones: [@direccion, @another_direccion]})
     end
 
     def update(h)
