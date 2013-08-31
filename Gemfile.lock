@@ -251,4 +251,5 @@ DEPENDENCIES
   rspec-rails (~> 2.0)
   sass-rails (~> 3.2.3)
   spork
+  thin
   uglifier (>= 1.0.3)
