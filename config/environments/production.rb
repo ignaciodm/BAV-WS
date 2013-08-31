@@ -20,6 +20,10 @@ BAVWs::Application.configure do
   # Generate digests for assets URLs
   config.assets.digest = true
 
+  # Para que precompile active admin
+  config.assets.precompile += %w[active_admin.css active_admin.js print.css]
+  config.assets.precompile += %w[active_admin/print.css]
+
   # Defaults to nil and saved in location specified by config.assets.prefix
   # config.assets.manifest = YOUR_PATH
 
