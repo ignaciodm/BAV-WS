@@ -10,7 +10,10 @@ ActiveAdmin.register Usuario do
   filter :email                       
 
   form do |f|                         
-    f.inputs "Admin Details" do       
+    f.inputs "Admin Details" do
+      f.input :nombre
+      f.input :apellido
+      f.input :dni
       f.input :email                  
       f.input :password               
       f.input :password_confirmation  

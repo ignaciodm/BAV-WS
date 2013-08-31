@@ -7,7 +7,8 @@ class DeviseCreateUsuarios < ActiveRecord::Migration
                     :password_confirmation => 'password',
                     :nombre =>'admin',
                     :apellido => 'admin',
-                    :dni => 'XXXXXXXX') if direction == :up
+                    :dni => 'XXXXXXXX',
+                    :confirmed_at => Time.now) if direction == :up
   end
 
   def change

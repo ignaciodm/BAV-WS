@@ -31,6 +31,10 @@ gem 'activeadmin'
 gem "meta_search",    '>= 1.1.0.pre'
 #end activeadmin
 
+group :development do
+  gem 'mailcatcher'
+end
+
 group :test do
   gem 'rspec-rails', '~> 2.0'
 
