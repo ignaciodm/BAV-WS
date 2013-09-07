@@ -6,6 +6,11 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+    Localidad.delete_all
+    Partido.delete_all
+    Provincia.delete_all
+
+
     provincias = [{nombre: 'Capital Federal',
                    partidos: [{nombre: 'San Isidro',
                                localidades: ['Villa Adelina', 'Boulogne', 'Martinez', 'Acassuso', 'San Isidro', 'Beccar']}]},

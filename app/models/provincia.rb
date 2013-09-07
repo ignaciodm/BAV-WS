@@ -3,4 +3,6 @@ class Provincia < ActiveRecord::Base
 
   has_many :partidos
 
+  validates :nombre, :presence => true
+
 end
