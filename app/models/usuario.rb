@@ -17,4 +17,12 @@ class Usuario < ActiveRecord::Base
   validates :apellido, :presence => true, :length => { :minimum => 2, maximum: 50}
   validates :dni, :presence => true, :length => { :minimum => 2, maximum: 25}
 
+  before_create :add_authentication_token
+
+  private
+  def add_authentication_token
+    curr_date = DateTime.current().utc()
+    self.authentication_token = Digest::SHA1.hexdigest(self.email + curr_date.to_s)
+  end
+
 end
