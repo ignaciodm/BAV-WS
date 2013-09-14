@@ -3,7 +3,8 @@ ActiveAdmin.register Usuario do
     column :email                     
     column :current_sign_in_at        
     column :last_sign_in_at           
-    column :sign_in_count             
+    column :sign_in_count
+    column :admin
     default_actions                   
   end                                 
 
@@ -16,7 +17,8 @@ ActiveAdmin.register Usuario do
       f.input :dni
       f.input :email                  
       f.input :password               
-      f.input :password_confirmation  
+      f.input :password_confirmation
+      f.input :admin
     end                               
     f.actions                         
   end                                 

@@ -7,8 +7,19 @@ class Usuario < ActiveRecord::Base
          :validatable, :token_authenticatable, :confirmable, :lockable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me
-  attr_accessible :nombre, :apellido, :dni, :direcciones, :confirmed_at
+
+  attr_accessible :email,
+                  :password,
+                  :password_confirmation,
+                  :remember_me,
+                  :nombre,
+                  :apellido,
+                  :dni,
+                  :direcciones,
+                  :confirmed_at,
+                  :as => [:default, :admin]
+
+  attr_accessible :admin, as: :admin
   #attr_accessible :title, :body
 
   has_many :direcciones

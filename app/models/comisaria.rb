@@ -1,5 +1,11 @@
 class Comisaria < ActiveRecord::Base
-  attr_accessible :calle, :nombre, :numero, :telefono, :localidades, :localidad_ids
+  attr_accessible :calle,
+                  :nombre,
+                  :numero,
+                  :telefono,
+                  :localidades,
+                  :localidad_ids,
+                  :as => [:default, :admin]
 
   has_and_belongs_to_many :localidades
 

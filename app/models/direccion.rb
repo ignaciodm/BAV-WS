@@ -1,5 +1,15 @@
 class Direccion < ActiveRecord::Base
-  attr_accessible :comentarios, :descripcion, :numero, :calle, :piso, :departamento, :localidad_id, :usuario_id
+  attr_accessor :usuario_id
+
+  attr_accessible :comentarios,
+                  :descripcion,
+                  :numero,
+                  :calle,
+                  :piso,
+                  :departamento,
+                  :localidad_id,
+                  :usuario_id,
+                  :as => [:default, :admin]
 
   belongs_to :localidad
   belongs_to :usuario

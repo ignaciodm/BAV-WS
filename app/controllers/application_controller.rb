@@ -7,8 +7,8 @@ class ApplicationController < ActionController::Base
 
   def authenticate_admin_user!
     authenticate_usuario!
-    #unless current_user.admin?
-    #  redirect_to companies_path
-    #end
+    unless current_usuario.admin?
+      redirect_to root_path
+    end
   end
 end

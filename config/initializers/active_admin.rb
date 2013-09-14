@@ -1,3 +1,9 @@
+module ActiveAdmin
+  class BaseController
+    with_role :admin
+  end
+end
+
 ActiveAdmin.setup do |config|
 
   # == Site Title
