@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130820014506) do
+ActiveRecord::Schema.define(:version => 20130914172730) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -66,11 +66,6 @@ ActiveRecord::Schema.define(:version => 20130820014506) do
   add_index "localidades", ["nombre", "partido_id"], :name => "index_localidades_on_nombre_and_partido_id", :unique => true
   add_index "localidades", ["nombre"], :name => "index_localidades_on_nombre"
 
-  create_table "localidades_comisarias", :id => false, :force => true do |t|
-    t.integer "localidad_id"
-    t.integer "comisaria_id"
-  end
-
   create_table "partidos", :force => true do |t|
     t.string   "nombre",       :null => false
     t.integer  "provincia_id", :null => false
@@ -90,11 +85,11 @@ ActiveRecord::Schema.define(:version => 20130820014506) do
   add_index "provincias", ["nombre"], :name => "index_provincias_on_nombre", :unique => true
 
   create_table "usuarios", :force => true do |t|
-    t.string   "email",                                :default => "", :null => false
-    t.string   "encrypted_password",                   :default => "", :null => false
-    t.string   "nombre",                 :limit => 50,                 :null => false
-    t.string   "apellido",               :limit => 50,                 :null => false
-    t.string   "dni",                    :limit => 25,                 :null => false
+    t.string   "email",                                :default => "",    :null => false
+    t.string   "encrypted_password",                   :default => "",    :null => false
+    t.string   "nombre",                 :limit => 50,                    :null => false
+    t.string   "apellido",               :limit => 50,                    :null => false
+    t.string   "dni",                    :limit => 25,                    :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -111,8 +106,9 @@ ActiveRecord::Schema.define(:version => 20130820014506) do
     t.string   "unlock_token"
     t.datetime "locked_at"
     t.string   "authentication_token"
-    t.datetime "created_at",                                           :null => false
-    t.datetime "updated_at",                                           :null => false
+    t.datetime "created_at",                                              :null => false
+    t.datetime "updated_at",                                              :null => false
+    t.boolean  "admin",                                :default => false
   end
 
   add_index "usuarios", ["authentication_token"], :name => "index_usuarios_on_authentication_token", :unique => true
