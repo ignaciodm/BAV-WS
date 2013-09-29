@@ -8,7 +8,20 @@ describe Direccion do
       @provincia = Provincia.create(nombre: 'Buenos Aires')
       @partido = Partido.create(nombre: 'San Isidro', provincia_id: @provincia.id)
       @localidad = Localidad.create(nombre: 'Beccar', partido_id: @partido.id)
-      @direccion = Direccion.new({descripcion: 'mi casa', calle: 'calle', numero: 10, localidad_id: @localidad.id})
+      @usuario = Usuario.create!({nombre: 'Ignacio',
+                                  apellido: 'De Maio',
+                                  dni: '34108888',
+                                  email: 'ignaciodemaio@gmail.com',
+                                  password: 'nacho123',
+                                  password_confirmation: 'nacho123'})
+      @comisaria = Comisaria.create({nombre: 'Comisaria 44', calle: 'calle', numero: 10, telefono: '4643-1282'})
+
+      @direccion = Direccion.new({descripcion: 'mi casa',
+                                  calle: 'calle',
+                                  numero: 10,
+                                  localidad_id: @localidad.id,
+                                  usuario_id: @usuario.id,
+                                  comisaria_id: @comisaria.id})
     end
 
     def update(h)

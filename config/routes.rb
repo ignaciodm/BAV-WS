@@ -3,10 +3,17 @@ BAVWs::Application.routes.draw do
   devise_for :usuarios, ActiveAdmin::Devise.config
 
   resources :comisarias
-  resources :direcciones
   resources :provincias
   resources :partidos
   resources :localidades
+
+  match 'login' => 'usuarios#login', :via => 'post'
+
+  resources :usuarios do
+    member do
+      resources :direcciones
+    end
+  end
 
 
   # The priority is based upon order of creation:

@@ -24,6 +24,8 @@ class Usuario < ActiveRecord::Base
 
   has_many :direcciones
 
+  accepts_nested_attributes_for :direcciones
+
   validates :nombre, :presence => true, :length => { :minimum => 2, maximum: 50}
   validates :apellido, :presence => true, :length => { :minimum => 2, maximum: 50}
   validates :dni, :presence => true, :length => { :minimum => 2, maximum: 25}

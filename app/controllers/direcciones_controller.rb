@@ -1,6 +1,10 @@
 class DireccionesController < ApplicationController
   # GET /direcciones
   # GET /direcciones.json
+
+  before_filter :validar_usuario
+
+
   def index
     @direcciones = Direccion.all
 
@@ -40,17 +44,18 @@ class DireccionesController < ApplicationController
   # POST /direcciones
   # POST /direcciones.json
   def create
-    @direccion = Direccion.new(params[:direccion])
+      params[:direccion][:usuario_id] = current_usuario.id
+      @direccion = Direccion.new(params[:direccion])
 
-    respond_to do |format|
-      if @direccion.save
-        format.html { redirect_to @direccion, notice: 'Direccion was successfully created.' }
-        format.json { render json: @direccion, status: :created, location: @direccion }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @direccion.errors, status: :unprocessable_entity }
+      respond_to do |format|
+        if @direccion.save
+          format.html { redirect_to @direccion, notice: 'Direccion was successfully created.' }
+          format.json { render 'create' }
+        else
+          format.html { render action: "new" }
+          format.json { render json: @direccion.errors, status: :unprocessable_entity }
+        end
       end
-    end
   end
 
   # PUT /direcciones/1
@@ -60,7 +65,7 @@ class DireccionesController < ApplicationController
 
     respond_to do |format|
       if @direccion.update_attributes(params[:direccion])
-        format.html { redirect_to @direccion, notice: 'Direccion was successfully updated.' }
+        format.html { redirectv_to @direccion, notice: 'Direccion was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -78,6 +83,12 @@ class DireccionesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to direcciones_url }
       format.json { head :no_content }
+    end
+  end
+
+  def validar_usuario
+    if current_usuario.id != params[:id].to_i
+      render status: :unauthorized, text: 'El contenido al que quiere acceder no pertenece a este usuario'
     end
   end
 end

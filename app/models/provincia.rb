@@ -1,5 +1,5 @@
 class Provincia < ActiveRecord::Base
-  attr_accessible :nombre, :as => [:admin]
+  attr_accessible :nombre, :as => [:default, :admin]
 
   has_many :partidos
 

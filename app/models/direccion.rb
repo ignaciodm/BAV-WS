@@ -1,6 +1,4 @@
 class Direccion < ActiveRecord::Base
-  attr_accessor :usuario_id
-
   attr_accessible :comentarios,
                   :descripcion,
                   :numero,
@@ -9,6 +7,7 @@ class Direccion < ActiveRecord::Base
                   :departamento,
                   :localidad_id,
                   :usuario_id,
+                  :comisaria_id,
                   :as => [:default, :admin]
 
   belongs_to :localidad
@@ -20,6 +19,7 @@ class Direccion < ActiveRecord::Base
   validates :piso, numericality: {only_integer: true}, :allow_nil => true
   validates :departamento, :length => {:maximum => 25}
   validates :localidad_id, :presence => true
+  validates :comisaria_id, :presence => true
 
   def partido
     localidad.partido

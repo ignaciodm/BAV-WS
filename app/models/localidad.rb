@@ -2,7 +2,7 @@ class Localidad < ActiveRecord::Base
   attr_accessible :comisarias, :as => [:default, :admin]
 
   attr_accessible :nombre,
-                  :partido_id,:as => [:admin]
+                  :partido_id,:as => [:default, :admin]
 
   belongs_to :partido
   has_and_belongs_to_many :comisarias

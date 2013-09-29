@@ -5,8 +5,9 @@ describe Usuario do
   describe 'Validations' do
 
     before(:each) do
-      @direccion = Direccion.new({descripcion: 'mi casa', calle: 'calle', numero: 10, localidad_id: 1})
-      @another_direccion = Direccion.new({descripcion: 'mi casa 2', calle: 'calle', numero: 10, localidad_id: 1})
+      @comisaria = Comisaria.create({nombre: 'Comisaria 44', calle: 'calle', numero: 10, telefono: '4643-1282'})
+      @direccion = Direccion.new({descripcion: 'mi casa', calle: 'calle', numero: 10, localidad_id: 1, comisaria_id: @comisaria.id})
+      @another_direccion = Direccion.new({descripcion: 'mi casa 2', calle: 'calle', numero: 10, localidad_id: 1, comisaria_id: @comisaria.id})
       @usuario = Usuario.create!({nombre: 'Ignacio',
                                   apellido: 'De Maio',
                                   dni: '34108888',
