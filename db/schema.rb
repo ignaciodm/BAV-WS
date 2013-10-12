@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131012033318) do
+ActiveRecord::Schema.define(:version => 20131012140640) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -45,17 +45,19 @@ ActiveRecord::Schema.define(:version => 20131012033318) do
   add_index "comisarias_localidades", ["comisaria_id", "localidad_id"], :name => "index_comisarias_localidades_on_comisaria_id_and_localidad_id", :unique => true
 
   create_table "direcciones", :force => true do |t|
-    t.string   "descripcion",  :null => false
-    t.string   "calle",        :null => false
-    t.integer  "numero",       :null => false
+    t.string   "descripcion",   :null => false
+    t.string   "calle",         :null => false
+    t.integer  "numero",        :null => false
     t.integer  "piso"
     t.string   "departamento"
     t.string   "comentarios"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
-    t.integer  "localidad_id", :null => false
-    t.integer  "usuario_id",   :null => false
-    t.integer  "comisaria_id", :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.integer  "localidad_id",  :null => false
+    t.integer  "usuario_id",    :null => false
+    t.integer  "comisaria_id",  :null => false
+    t.string   "entre_calle_1"
+    t.string   "entre_calle_2"
   end
 
   add_index "direcciones", ["id", "comisaria_id"], :name => "index_direcciones_on_id_and_comisaria_id", :unique => true
