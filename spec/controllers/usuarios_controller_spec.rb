@@ -30,7 +30,10 @@ describe UsuariosController do
 
       post :login, {:format => 'json', email: usuario.email, password: usuario.password }
       response.status.should == 200
-      response.body.should == "{\"id\":2,\"nombre\":\"nacho\",\"apellido\":\"de maio\",\"direcciones\":[]}"
+      response.body.should == "{\"id\":2,\"nombre\":\"nacho\",\"apellido\":\"de maio\"," +
+                              "\"dni\":\"34108898\",\"email\":\"ignaciodemaio@gmail.com\"," +
+                              "\"authentication_token\":\"#{usuario.authentication_token}\"," +
+                              "\"failed_attempts\":0,\"access_locked?\":false,\"direcciones\":[]}"
     end
   end
 end
