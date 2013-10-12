@@ -10,7 +10,13 @@ class UsuariosController < ApplicationController
 
   def create
     puts params[:usuario].to_s
-    @usuario = Usuario.create!(params[:usuario])
+    @usuario = Usuario.new(params[:usuario])
+
+    if @usuario.save
+      @usuario
+    else
+      render json: @usuario.errors, status: :unprocessable_entity
+    end
   end
 
   def login
