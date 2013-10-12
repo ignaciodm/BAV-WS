@@ -23,7 +23,9 @@ describe Direccion do
                                   numero: 10,
                                   localidad_id: @localidad.id,
                                   usuario_id: @usuario.id,
-                                  comisaria_id: @comisaria.id})
+                                  comisaria_id: @comisaria.id,
+                                  entre_calle_1: 'entre_calle_1',
+                                  entre_calle_2: 'entre_calle_2'})
     end
 
     def update(h)
@@ -195,6 +197,22 @@ describe Direccion do
       context 'when localidad is valid' do
         it 'should save' do
           update({localidad_id: @localidad.id})
+          @direccion.errors.empty?.should == true
+        end
+      end
+    end
+
+    describe 'entre_calles' do
+      context 'when entre_calle_1 is not nil and entre_calle_2 is nil' do
+        it 'should not save' do
+          update({entre_calle_2: nil})
+          @direccion.errors[:entre_calle_2].should == ["can't be blank", "is too short (minimum is 2 characters)"]
+        end
+      end
+
+      context 'when calle is valid' do
+        it 'should save' do
+          update({entre_calle_1: nil, entre_calle_2: nil})
           @direccion.errors.empty?.should == true
         end
       end

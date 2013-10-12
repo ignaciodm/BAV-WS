@@ -20,7 +20,7 @@ describe UsuariosController do
       usuario = Usuario.first
       response.body.should == "{\"id\":#{usuario.id},\"nombre\":\"nacho\",\"apellido\":\"de maio\"," +
           "\"dni\":\"34108898\",\"email\":\"ignaciodemaio@gmail.com\"," +
-          "\"telefono\":\"4644-4444\",\"fechaDeNacimiento\":\"1989-02-25T00:00:00Z\"," +
+          "\"telefono\":\"4644-4444\",\"fechaDeNacimiento\":\"1989-02-25\"," +
           "\"authToken\":\"#{usuario.authentication_token}\"," +
           "\"bloqueado\":false,\"direcciones\":[]}"
     end
@@ -56,7 +56,7 @@ describe UsuariosController do
       response.status.should == 200
       response.body.should == "{\"id\":#{usuario.id},\"nombre\":\"nacho\",\"apellido\":\"de maio\"," +
                               "\"dni\":\"34108898\",\"email\":\"ignaciodemaio@gmail.com\"," +
-                              "\"telefono\":\"4644-4444\",\"fechaDeNacimiento\":\"1989-02-25T02:00:00Z\"," +
+                              "\"telefono\":\"4644-4444\",\"fechaDeNacimiento\":\"1989-02-25\"," +
                               "\"authToken\":\"#{usuario.authentication_token}\"," +
                               "\"bloqueado\":false,\"direcciones\":[]}"
     end

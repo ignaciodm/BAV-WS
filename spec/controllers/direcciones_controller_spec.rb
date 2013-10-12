@@ -32,12 +32,21 @@ describe DireccionesController do
                         descripcion: 'nacho',
                         calle: 'Dupuy',
                         numero: '930',
+                        entre_calle_1: 'entre calle 1',
+                        entre_calle_2: 'entre calle 2',
                         localidad_id: @localidad.id,
                         comisaria_id: @comisaria.id
                      }
       }
       response.status.should == 200
-      response.body.should == "{\"id\":1,\"descripcion\":\"nacho\",\"numero\":930,\"calle\":\"Dupuy\",\"piso\":null,\"departamento\":null,\"showUrl\":\"http://test.host/usuarios/1/direcciones/1\"}"
+      response.body.should == "{\"id\":1,\"descripcion\":\"nacho\",\"numero\":930,\"calle\":\"Dupuy\"," +
+                              "\"piso\":null,\"departamento\":null,\"entreCalle1\":\"entre calle 1\"," +
+                              "\"entreCalle2\":\"entre calle 2\","+
+                              "\"comisaria\":{\"id\":1,\"nombre\":\"Comisaria 44\"},"+
+                              "\"localidad\":{\"id\":1,\"nombre\":\"Beccar\"},"+
+                              "\"partido\":{\"id\":1,\"nombre\":\"San Isidro\"}, +"
+                              "\"provincia\":{\"id\":1,\"nombre\":\"Buenos Aires\"}," +
+                              "\"showUrl\":\"http://test.host/usuarios/1/direcciones/1\"}"
     end
 
     it "creates a direccion" do
