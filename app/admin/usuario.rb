@@ -15,7 +15,9 @@ ActiveAdmin.register Usuario do
       f.input :nombre
       f.input :apellido
       f.input :dni
-      f.input :email                  
+      f.input :email
+      f.input :telefono
+      f.input :fecha_de_nacimiento
       f.input :password               
       f.input :password_confirmation
       f.input :admin

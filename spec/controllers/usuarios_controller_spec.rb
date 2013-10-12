@@ -36,6 +36,7 @@ describe UsuariosController do
                          dni: '34108898'}
       }
 
+      response.status.should == 400
       response.body.should == "{\"telefono\":[\"can't be blank\",\"is too short (minimum is 6 characters)\"],\"fechaDeNacimiento\":[\"can't be blank\"]}"
     end
   end

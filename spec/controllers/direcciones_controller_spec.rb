@@ -27,15 +27,15 @@ describe DireccionesController do
     it "creates a direccion" do
       post :create, {:format => 'json',
                      id: @usuario.id,
-                     auth_token: @usuario.authentication_token,
+                     authToken: @usuario.authentication_token,
                      direccion: {
                         descripcion: 'nacho',
                         calle: 'Dupuy',
                         numero: '930',
-                        entre_calle_1: 'entre calle 1',
-                        entre_calle_2: 'entre calle 2',
-                        localidad_id: @localidad.id,
-                        comisaria_id: @comisaria.id
+                        entreCalle1: 'entre calle 1',
+                        entreCalle2: 'entre calle 2',
+                        localidadId: @localidad.id,
+                        comisariaId: @comisaria.id
                      }
       }
       response.status.should == 200
@@ -44,7 +44,7 @@ describe DireccionesController do
                               "\"entreCalle2\":\"entre calle 2\","+
                               "\"comisaria\":{\"id\":1,\"nombre\":\"Comisaria 44\"},"+
                               "\"localidad\":{\"id\":1,\"nombre\":\"Beccar\"},"+
-                              "\"partido\":{\"id\":1,\"nombre\":\"San Isidro\"}, +"
+                              "\"partido\":{\"id\":1,\"nombre\":\"San Isidro\"}," +
                               "\"provincia\":{\"id\":1,\"nombre\":\"Buenos Aires\"}," +
                               "\"showUrl\":\"http://test.host/usuarios/1/direcciones/1\"}"
     end
@@ -52,7 +52,7 @@ describe DireccionesController do
     it "creates a direccion" do
       post :create, {:format => 'json',
                      id: @usuario.id + 1,
-                     auth_token: @usuario.authentication_token,
+                     authToken: @usuario.authentication_token,
                      direccion: {
                          descripcion: 'nacho',
                          calle: 'Dupuy',

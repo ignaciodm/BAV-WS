@@ -45,7 +45,16 @@ class DireccionesController < ApplicationController
   # POST /direcciones.json
   def create
       params[:direccion][:usuario_id] = current_usuario.id
-      @direccion = Direccion.new(params[:direccion])
+      direccion_params = snakecase_keys_from_params(params[:direccion])
+
+      #TODO hack
+      direccion_params['entre_calle_1'] = direccion_params['entre_calle1']
+      direccion_params['entre_calle_2'] = direccion_params['entre_calle2']
+      direccion_params.delete('entre_calle1')
+      direccion_params.delete('entre_calle2')
+
+
+      @direccion = Direccion.new(direccion_params)
 
       respond_to do |format|
         if @direccion.save
@@ -53,7 +62,7 @@ class DireccionesController < ApplicationController
           format.json { render 'create' }
         else
           format.html { render action: "new" }
-          format.json { render json: @direccion.errors, status: :unprocessable_entity }
+          format.json { render json: @direccion.errors, status: :bad_request }
         end
       end
   end
@@ -69,7 +78,7 @@ class DireccionesController < ApplicationController
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
-        format.json { render json: @direccion.errors, status: :unprocessable_entity }
+        format.json { render json: @direccion.errors, status: :bad_request}
       end
     end
   end
