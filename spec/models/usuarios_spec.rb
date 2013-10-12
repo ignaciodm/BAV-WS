@@ -14,6 +14,8 @@ describe Usuario do
                                   email: 'ignaciodemaio@gmail.com',
                                   password: 'nacho123',
                                   password_confirmation: 'nacho123',
+                                  telefono: '4644-4444',
+                                  fecha_de_nacimiento: Date.new(1989, 02, 25),
                                   direcciones: [@direccion, @another_direccion]})
     end
 

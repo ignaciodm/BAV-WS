@@ -6,9 +6,9 @@ describe Comisaria do
 
     before(:each) do
       @provincia = Provincia.create!(nombre: 'Buenos Aires')
-      @partido = Partido.create!(nombre: 'San Isidro', provincia_id: @provincia)
-      @localidad = Localidad.create!(nombre: 'Beccar', partido_id: @partido)
-      @another_localidad = Localidad.create!(nombre: 'Otra Localidad', partido_id: @partido)
+      @partido = Partido.create!(nombre: 'San Isidro', provincia_id: @provincia.id)
+      @localidad = Localidad.create!(nombre: 'Beccar', partido_id: @partido.id)
+      @another_localidad = Localidad.create!(nombre: 'Otra Localidad', partido_id: @partido.id)
       @comisaria = Comisaria.new({nombre: 'Comisaria 44', calle: 'calle', numero: 10, telefono: '4643-1282', localidades: [@localidad, @another_localidad]})
     end
 

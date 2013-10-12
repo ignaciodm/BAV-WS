@@ -16,6 +16,8 @@ describe DireccionesController do
                                   email: 'ignaciodemaio20@gmail.com',
                                   password: 'nacho123',
                                   dni: '34108898',
+                                  telefono: '4644-4444',
+                                  fecha_de_nacimiento: Date.new(1989, 02, 25),
                                   confirmed_at: Time.now})
     sign_in(@usuario)
   end

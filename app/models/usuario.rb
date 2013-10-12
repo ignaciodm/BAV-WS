@@ -15,6 +15,8 @@ class Usuario < ActiveRecord::Base
                   :nombre,
                   :apellido,
                   :dni,
+                  :telefono,
+                  :fecha_de_nacimiento,
                   :direcciones,
                   :confirmed_at,
                   :as => [:default, :admin]
@@ -29,6 +31,8 @@ class Usuario < ActiveRecord::Base
   validates :nombre, :presence => true, :length => { :minimum => 2, maximum: 50}
   validates :apellido, :presence => true, :length => { :minimum => 2, maximum: 50}
   validates :dni, :presence => true, :length => { :minimum => 2, maximum: 25}
+  validates :telefono, :presence => true, :length => { :minimum => 6, maximum: 50}
+  validates :fecha_de_nacimiento, :presence => true
 
   before_create :add_authentication_token
 
