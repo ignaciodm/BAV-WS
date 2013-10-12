@@ -13,6 +13,12 @@ class ApplicationController < ActionController::Base
     ret
   end
 
+  def snakecase_keys_from_params(hash)
+    ret = {}
+    hash.each {|k, v| ret[k.to_s.underscore] = v}
+    ret
+  end
+
   private
 
   def authenticate_admin_user!

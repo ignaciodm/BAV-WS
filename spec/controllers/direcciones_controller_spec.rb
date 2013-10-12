@@ -37,7 +37,7 @@ describe DireccionesController do
                      }
       }
       response.status.should == 200
-      response.body.should == "{\"id\":1,\"descripcion\":\"nacho\",\"numero\":930,\"calle\":\"Dupuy\",\"piso\":null,\"departamento\":null,\"show_url\":\"http://test.host/usuarios/1/direcciones/1\"}"
+      response.body.should == "{\"id\":1,\"descripcion\":\"nacho\",\"numero\":930,\"calle\":\"Dupuy\",\"piso\":null,\"departamento\":null,\"showUrl\":\"http://test.host/usuarios/1/direcciones/1\"}"
     end
 
     it "creates a direccion" do

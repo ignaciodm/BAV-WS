@@ -10,7 +10,8 @@ class UsuariosController < ApplicationController
 
   def create
     puts params[:usuario].to_s
-    @usuario = Usuario.new(params[:usuario])
+    usuario_params = snakecase_keys_from_params(params[:usuario])
+    @usuario = Usuario.new(usuario_params)
 
     if @usuario.save
       @usuario

@@ -13,7 +13,7 @@ describe UsuariosController do
           email: 'ignaciodemaio@gmail.com',
           password: 'nacho123',
           telefono: '4644-4444',
-          fecha_de_nacimiento: "1989-02-25",
+          fechaDeNacimiento: "1989-02-25",
           dni: '34108898'}
       }
       expect(response).to render_template('usuarios/mailer/confirmation_instructions')
@@ -32,7 +32,7 @@ describe UsuariosController do
                          apellido: 'de maio',
                          email: 'ignaciodemaio@gmail.com',
                          password: 'nacho123',
-                         fecha_de_nacimiento: "",
+                         fechaDeNacimiento: "",
                          dni: '34108898'}
       }
 
