@@ -1,2 +1,2 @@
 json.(localidad, :id, :nombre)
-json.show_url localidad_url(id: localidad.id)
+json.showUrl localidad_url(id: localidad.id)

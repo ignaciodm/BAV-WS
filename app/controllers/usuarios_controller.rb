@@ -15,7 +15,7 @@ class UsuariosController < ApplicationController
     if @usuario.save
       @usuario
     else
-      render json: @usuario.errors, status: :unprocessable_entity
+      render json: camelcase_keys_from_a_hash(@usuario.errors.messages), status: :unprocessable_entity
     end
   end
 

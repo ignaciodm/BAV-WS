@@ -1,2 +1,2 @@
 json.(partido, :id, :nombre)
-json.show_url partido_url(partido)
+json.showUrl partido_url(partido)
