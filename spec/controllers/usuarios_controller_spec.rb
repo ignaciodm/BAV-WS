@@ -7,16 +7,16 @@ describe UsuariosController do
   describe "create" do
 
     it "creates the user and call confirmation instructions" do
-      post :create, {:format => 'json',
-                     usuario: {
-          nombre: 'nacho',
-          apellido: 'de maio',
-          email: 'ignaciodemaio@gmail.com',
-          password: 'nacho123',
-          telefono: '4644-4444',
-          fechaDeNacimiento: "1989-02-25",
-          dni: '34108898'}
+      post :create, {
+                      nombre: 'nacho',
+                      apellido: 'de maio',
+                      email: 'ignaciodemaio@gmail.com',
+                      password: 'nacho123',
+                      telefono: '4644-4444',
+                      fechaDeNacimiento: "1989-02-25",
+                      dni: '34108898'
       }
+
       expect(response).to render_template('usuarios/mailer/confirmation_instructions')
       usuario = Usuario.first
       response.body.should == "{\"id\":#{usuario.id},\"nombre\":\"nacho\",\"apellido\":\"de maio\"," +
@@ -28,13 +28,12 @@ describe UsuariosController do
 
     it "returns a json with the fields that have errors" do
       post :create, {:format => 'json',
-                     usuario: {
-                         nombre: 'nacho',
-                         apellido: 'de maio',
-                         email: 'ignaciodemaio@gmail.com',
-                         password: 'nacho123',
-                         fechaDeNacimiento: "",
-                         dni: '34108898'}
+                     nombre: 'nacho',
+                     apellido: 'de maio',
+                     email: 'ignaciodemaio@gmail.com',
+                     password: 'nacho123',
+                     fechaDeNacimiento: "",
+                     dni: '34108898'
       }
 
       response.status.should == 400
@@ -59,11 +58,10 @@ describe UsuariosController do
       put :update, {:format => 'json',
                      id: usuario.id,
                      authToken: usuario.authentication_token,
-                     usuario: {
-                         nombre: 'Ignacio Miguel',
-                         apellido: 'De Maio',
-                         telefono: '4643-1282',
-                         fechaDeNacimiento: "1989-02-26"}
+                     nombre: 'Ignacio Miguel',
+                     apellido: 'De Maio',
+                     telefono: '4643-1282',
+                     fechaDeNacimiento: "1989-02-26"
       }
 
       response.status.should == 200
@@ -94,11 +92,10 @@ describe UsuariosController do
 
         put :update, {:format => 'json',
                       id: usuario.id,
-                      usuario: {
-                          nombre: 'Ignacio Miguel',
-                          apellido: 'De Maio',
-                          telefono: '4643-1282',
-                          fechaDeNacimiento: "1989-02-26"}
+                      nombre: 'Ignacio Miguel',
+                      apellido: 'De Maio',
+                      telefono: '4643-1282',
+                      fechaDeNacimiento: "1989-02-26"
         }
 
         response.status.should == 401

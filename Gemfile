@@ -38,6 +38,7 @@ end
 
 group :test do
   gem 'rspec-rails', '~> 2.0'
+  gem 'test-unit'
 
   gem 'spork'
 

@@ -28,15 +28,13 @@ describe DireccionesController do
       post :create, {:format => 'json',
                      id: @usuario.id,
                      authToken: @usuario.authentication_token,
-                     direccion: {
-                        descripcion: 'nacho',
-                        calle: 'Dupuy',
-                        numero: '930',
-                        entreCalle1: 'entre calle 1',
-                        entreCalle2: 'entre calle 2',
-                        localidadId: @localidad.id,
-                        comisariaId: @comisaria.id
-                     }
+                      descripcion: 'nacho',
+                      calle: 'Dupuy',
+                      numero: '930',
+                      entreCalle1: 'entre calle 1',
+                      entreCalle2: 'entre calle 2',
+                      localidadId: @localidad.id,
+                      comisariaId: @comisaria.id
       }
       response.status.should == 200
       response.body.should == "{\"id\":1,\"descripcion\":\"nacho\",\"numero\":930,\"calle\":\"Dupuy\"," +
@@ -53,13 +51,11 @@ describe DireccionesController do
       post :create, {:format => 'json',
                      id: @usuario.id + 1,
                      authToken: @usuario.authentication_token,
-                     direccion: {
-                         descripcion: 'nacho',
-                         calle: 'Dupuy',
-                         numero: '930',
-                         localidad_id: @localidad.id,
-                         comisaria_id: @comisaria.id
-                     }
+                     descripcion: 'nacho',
+                     calle: 'Dupuy',
+                     numero: '930',
+                     localidad_id: @localidad.id,
+                     comisaria_id: @comisaria.id
       }
       response.status.should == 401
       response.body.should == 'El contenido al que quiere acceder no pertenece a este usuario'

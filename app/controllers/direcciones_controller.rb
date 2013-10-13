@@ -45,14 +45,8 @@ class DireccionesController < ApplicationController
   # POST /direcciones.json
   def create
       params[:direccion][:usuario_id] = current_usuario.id
-      direccion_params = snakecase_keys_from_params(params[:direccion])
 
-      #TODO hack
-      direccion_params['entre_calle_1'] = direccion_params['entre_calle1']
-      direccion_params['entre_calle_2'] = direccion_params['entre_calle2']
-      direccion_params.delete('entre_calle1')
-      direccion_params.delete('entre_calle2')
-
+      format_direccion_params
 
       @direccion = Direccion.new(direccion_params)
 
@@ -67,10 +61,19 @@ class DireccionesController < ApplicationController
       end
   end
 
+  def format_direccion_params
+    params[:direccion][:entre_calle_1] = params[:entreCalle1]
+    params[:direccion][:entre_calle_2] = params[:entreCalle2]
+    params[:direccion][:localidad_id] = params[:localidadId]
+    params[:direccion][:comisaria_id] = params[:comisariaId]
+  end
+
   # PUT /direcciones/1
   # PUT /direcciones/1.json
   def update
     @direccion = Direccion.find(params[:id])
+
+    format_direccion_params
 
     respond_to do |format|
       if @direccion.update_attributes(params[:direccion])
