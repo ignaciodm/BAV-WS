@@ -8,6 +8,18 @@ class UsuariosController < ApplicationController
     @usuario = Usuario.find(params[:id])
   end
 
+  def update
+    @usuario = Usuario.find(params[:id])
+    usuario_params = snakecase_keys_from_params(params[:usuario])
+
+    if @usuario.update_attributes(usuario_params)
+      render 'usuarios/show'
+    else
+      render json: camelcase_keys_from_a_hash(@usuario.errors.messages), status: :bad_request
+    end
+
+  end
+
   def create
     puts params[:usuario].to_s
     usuario_params = snakecase_keys_from_params(params[:usuario])

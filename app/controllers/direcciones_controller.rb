@@ -74,7 +74,7 @@ class DireccionesController < ApplicationController
 
     respond_to do |format|
       if @direccion.update_attributes(params[:direccion])
-        format.html { redirectv_to @direccion, notice: 'Direccion was successfully updated.' }
+        format.html { redirect_to @direccion, notice: 'Direccion was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
