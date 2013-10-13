@@ -48,24 +48,20 @@ class DireccionesController < ApplicationController
 
       format_direccion_params
 
-      @direccion = Direccion.new(direccion_params)
+      @direccion = Direccion.new(params[:direccion])
 
-      respond_to do |format|
-        if @direccion.save
-          format.html { redirect_to @direccion, notice: 'Direccion was successfully created.' }
-          format.json { render 'create' }
-        else
-          format.html { render action: "new" }
-          format.json { render json: @direccion.errors, status: :bad_request }
-        end
+      if @direccion.save
+        render 'direcciones/show'
+      else
+        format.json { render json: camelcase_keys_from_a_hash(@direccion.errors.messages), status: :bad_request }
       end
   end
 
   def format_direccion_params
-    params[:direccion][:entre_calle_1] = params[:entreCalle1]
-    params[:direccion][:entre_calle_2] = params[:entreCalle2]
-    params[:direccion][:localidad_id] = params[:localidadId]
-    params[:direccion][:comisaria_id] = params[:comisariaId]
+    params[:direccion][:entre_calle_1] = params[:entreCalle1] if params[:entreCalle1].present?
+    params[:direccion][:entre_calle_2] = params[:entreCalle2] if params[:entreCalle2].present?
+    params[:direccion][:localidad_id] = params[:localidadId] if params[:localidadId].present?
+    params[:direccion][:comisaria_id] = params[:comisariaId] if params[:comisariaId].present?
   end
 
   # PUT /direcciones/1
@@ -75,14 +71,10 @@ class DireccionesController < ApplicationController
 
     format_direccion_params
 
-    respond_to do |format|
-      if @direccion.update_attributes(params[:direccion])
-        format.html { redirect_to @direccion, notice: 'Direccion was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @direccion.errors, status: :bad_request}
-      end
+    if @direccion.update_attributes(params[:direccion])
+      render 'direcciones/show'
+    else
+      render json: camelcase_keys_from_a_hash(@direccion.errors.messages), status: :bad_request
     end
   end
 
@@ -99,7 +91,8 @@ class DireccionesController < ApplicationController
   end
 
   def validar_usuario
-    if current_usuario.id != params[:id].to_i
+    usuario_id = (params[:usuario_id] || params[:id]).to_i
+    if current_usuario.id != usuario_id
       render status: :unauthorized, text: 'El contenido al que quiere acceder no pertenece a este usuario'
     end
   end

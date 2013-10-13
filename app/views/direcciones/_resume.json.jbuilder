@@ -5,5 +5,5 @@ json.comisaria direccion.comisaria, :id, :nombre
 json.localidad direccion.localidad, :id, :nombre
 json.partido direccion.localidad.partido, :id, :nombre
 json.provincia direccion.localidad.partido.provincia, :id, :nombre
-json.showUrl direccion_url(direccion.usuario, direccion)
+json.showUrl usuario_direccion_url(direccion.usuario, direccion)
 

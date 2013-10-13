@@ -1,1 +1,1 @@
-json.partial! 'resume', direccion: @direccioin
+json.partial! 'resume', direccion: @direccion

@@ -10,9 +10,7 @@ BAVWs::Application.routes.draw do
   match 'login' => 'usuarios#login', :via => 'post'
 
   resources :usuarios do
-    member do
-      resources :direcciones
-    end
+    resources :direcciones
   end
 
 
