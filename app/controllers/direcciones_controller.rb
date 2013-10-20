@@ -6,7 +6,7 @@ class DireccionesController < ApplicationController
 
 
   def index
-    @direcciones = Direccion.all
+    @direcciones = Direccion.find_all_by_usuario_id(params[:usuario_id])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -53,7 +53,7 @@ class DireccionesController < ApplicationController
       if @direccion.save
         render 'direcciones/show'
       else
-        format.json { render json: camelcase_keys_from_a_hash(@direccion.errors.messages), status: :bad_request }
+        render json: camelcase_keys_from_a_hash(@direccion.errors.messages), status: :bad_request
       end
   end
 
