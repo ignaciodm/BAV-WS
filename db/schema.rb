@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131012140640) do
+ActiveRecord::Schema.define(:version => 20131021022427) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(:version => 20131012140640) do
     t.string   "telefono",   :limit => 50,  :null => false
     t.datetime "created_at",                :null => false
     t.datetime "updated_at",                :null => false
+    t.integer  "usuario_id",                :null => false
   end
 
   create_table "comisarias_localidades", :id => false, :force => true do |t|
@@ -43,6 +44,15 @@ ActiveRecord::Schema.define(:version => 20131012140640) do
   end
 
   add_index "comisarias_localidades", ["comisaria_id", "localidad_id"], :name => "index_comisarias_localidades_on_comisaria_id_and_localidad_id", :unique => true
+
+  create_table "denuncias", :force => true do |t|
+    t.integer  "comisaria_id",                  :null => false
+    t.integer  "direccion_id",                  :null => false
+    t.string   "estado",       :default => "a"
+    t.string   "observacion"
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+  end
 
   create_table "direcciones", :force => true do |t|
     t.string   "descripcion",   :null => false
@@ -119,6 +129,7 @@ ActiveRecord::Schema.define(:version => 20131012140640) do
     t.boolean  "admin",                                :default => false
     t.string   "telefono",               :limit => 50,                    :null => false
     t.date     "fecha_de_nacimiento",                                     :null => false
+    t.boolean  "comisaria",                            :default => false
   end
 
   add_index "usuarios", ["authentication_token"], :name => "index_usuarios_on_authentication_token", :unique => true

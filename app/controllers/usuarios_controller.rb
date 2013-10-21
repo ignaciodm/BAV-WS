@@ -2,10 +2,40 @@ class UsuariosController < ApplicationController
 
   skip_before_filter :authenticate_usuario!, :only => [:create, :login]
 
+
+  def index
+    @usuarios = Usuario.all
+
+    if params[:comisariaId]
+      @usuarios = @usuarios.select do |u|
+        u.direcciones.any? {|d| d.comisaria_id == params[:comisariaId].to_i}
+      end
+    end
+
+    if params[:bloqueado]
+      bloqueado = params[:bloqueado] == 'true'
+      @usuarios = @usuarios.select { |u| u.access_locked? == bloqueado}
+    end
+
+    render 'usuarios/index'
+  end
+
   # GET /usuarios/id
   # GET /usuarios/1.json
   def show
     @usuario = Usuario.find(params[:id])
+  end
+
+  def bloqueo
+    @usuario = Usuario.find(params[:id])
+    @usuario.lock_access!
+    render 'usuarios/show'
+  end
+
+  def desbloqueo
+    @usuario = Usuario.find(params[:id])
+    @usuario.unlock_access!
+    render 'usuarios/show'
   end
 
   def update
@@ -44,4 +74,10 @@ class UsuariosController < ApplicationController
     render 'usuarios/show'
   end
 
+  def destroy
+    @usuario = Usuario.find(params[:id])
+    @usuario.destroy
+
+    render 'usuarios/show'
+  end
 end

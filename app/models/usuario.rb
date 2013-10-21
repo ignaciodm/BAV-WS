@@ -19,6 +19,7 @@ class Usuario < ActiveRecord::Base
                   :fecha_de_nacimiento,
                   :direcciones,
                   :confirmed_at,
+                  :comisaria,
                   :as => [:default, :admin]
 
   attr_accessible :admin, as: :admin

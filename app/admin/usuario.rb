@@ -5,7 +5,8 @@ ActiveAdmin.register Usuario do
     column :last_sign_in_at           
     column :sign_in_count
     column :admin
-    default_actions                   
+    column :comisaria
+    default_actions
   end                                 
 
   filter :email                       
@@ -21,6 +22,7 @@ ActiveAdmin.register Usuario do
       f.input :password               
       f.input :password_confirmation
       f.input :admin
+      f.input :comisaria
     end                               
     f.actions                         
   end                                 

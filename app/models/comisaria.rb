@@ -4,9 +4,11 @@ class Comisaria < ActiveRecord::Base
                   :numero,
                   :telefono,
                   :localidades,
+                  :usuario_id,
                   :localidad_ids,
                   :as => [:default, :admin]
 
+  belongs_to :usuario
   has_and_belongs_to_many :localidades
 
   validates :nombre, :presence => true, :length => { :minimum => 2, maximum: 50}

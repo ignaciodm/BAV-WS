@@ -84,10 +84,7 @@ class DireccionesController < ApplicationController
     @direccion = Direccion.find(params[:id])
     @direccion.destroy
 
-    respond_to do |format|
-      format.html { redirect_to direcciones_url }
-      format.json { head :no_content }
-    end
+    render 'direcciones/show'
   end
 
   def validar_usuario

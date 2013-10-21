@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  comisaria_id: 
+  direccion_id: 1
+  usuario_id: 1
+  estado: MyString
+  observacion: MyString
+
+two:
+  comisaria_id: 
+  direccion_id: 1
+  usuario_id: 1
+  estado: MyString
+  observacion: MyString

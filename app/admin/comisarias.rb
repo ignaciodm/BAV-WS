@@ -6,6 +6,7 @@ ActiveAdmin.register Comisaria do
     column :calle
     column :numero
     column :telefono
+    column :usuario
     column :localidades do |comisaria|
         comisaria.localidades.map(&:nombre).sort.join(', ')
     end
@@ -19,6 +20,7 @@ ActiveAdmin.register Comisaria do
       row :calle
       row :numero
       row :telefono
+      row :usuario
       row :localidades do |comisaria|
           comisaria.localidades.map(&:nombre).sort.join(', ')
       end
@@ -34,6 +36,7 @@ ActiveAdmin.register Comisaria do
       f.input :calle
       f.input :numero
       f.input :telefono
+      f.input :usuario, :collection => Usuario.all.select {|u| u.comisaria?}
       f.input :localidades, :as => :check_boxes,
               :member_label => :form_name,
               :label => "Create a tracked accounts to",

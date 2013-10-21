@@ -2,15 +2,27 @@ BAVWs::Application.routes.draw do
   ActiveAdmin.routes(self)
   devise_for :usuarios, ActiveAdmin::Devise.config
 
+  devise_for :usuarios, :controllers => {:sessions => 'sessions'}
+
+  devise_scope :usuario do
+    post "login", :to => "sessions#login"
+  end
+
   resources :comisarias
   resources :provincias
   resources :partidos
   resources :localidades
+  resources :denuncias
 
-  match 'login' => 'usuarios#login', :via => 'post'
+  match 'login' => 'sessions#login', :via => 'post'
 
   resources :usuarios do
+    member do
+      post 'bloqueo'
+      post 'desbloqueo'
+    end
     resources :direcciones
+    resources :comisarias
   end
 
 
