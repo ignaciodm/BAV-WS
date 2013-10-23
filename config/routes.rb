@@ -2,8 +2,6 @@ BAVWs::Application.routes.draw do
   ActiveAdmin.routes(self)
   devise_for :usuarios, ActiveAdmin::Devise.config
 
-  devise_for :usuarios, :controllers => {:sessions => 'sessions'}
-
   devise_scope :usuario do
     post "login", :to => "sessions#login"
   end
