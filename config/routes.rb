@@ -2,9 +2,9 @@ BAVWs::Application.routes.draw do
   ActiveAdmin.routes(self)
   devise_for :usuarios, ActiveAdmin::Devise.config
 
-  devise_scope :usuario do
-    post "login", :to => "sessions#login"
-  end
+  #devise_scope :usuario do
+  #  post "login", :to => "sessions#login"
+  #end
 
   resources :comisarias
   resources :provincias
@@ -12,7 +12,7 @@ BAVWs::Application.routes.draw do
   resources :localidades
   resources :denuncias
 
-  match 'login' => 'sessions#login', :via => 'post'
+  match 'login' => 'usuarios#login', :via => 'post'
 
   resources :usuarios do
     member do
