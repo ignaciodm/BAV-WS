@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131021022427) do
+ActiveRecord::Schema.define(:version => 20131023000820) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(:version => 20131021022427) do
 
   add_index "comisarias_localidades", ["comisaria_id", "localidad_id"], :name => "index_comisarias_localidades_on_comisaria_id_and_localidad_id", :unique => true
 
-  create_table "denuncias", :force => true do |t|
+  create_table "denuncia", :force => true do |t|
     t.integer  "comisaria_id",                  :null => false
     t.integer  "direccion_id",                  :null => false
     t.string   "estado",       :default => "a"
@@ -129,7 +129,7 @@ ActiveRecord::Schema.define(:version => 20131021022427) do
     t.boolean  "admin",                                :default => false
     t.string   "telefono",               :limit => 50,                    :null => false
     t.date     "fecha_de_nacimiento",                                     :null => false
-    t.boolean  "comisaria",                            :default => false
+    t.boolean  "is_comisaria",                         :default => false
   end
 
   add_index "usuarios", ["authentication_token"], :name => "index_usuarios_on_authentication_token", :unique => true

@@ -22,7 +22,7 @@ ActiveAdmin.register Usuario do
       f.input :password               
       f.input :password_confirmation
       f.input :admin
-      f.input :comisaria
+      f.input :is_comisaria
     end                               
     f.actions                         
   end                                 

@@ -19,12 +19,14 @@ class Usuario < ActiveRecord::Base
                   :fecha_de_nacimiento,
                   :direcciones,
                   :confirmed_at,
-                  :comisaria,
+                  :is_comisaria,
                   :as => [:default, :admin]
 
   attr_accessible :admin, as: :admin
   #attr_accessible :title, :body
 
+
+  has_one :comisaria
   has_many :direcciones
 
   accepts_nested_attributes_for :direcciones
