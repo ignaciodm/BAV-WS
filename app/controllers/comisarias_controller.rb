@@ -83,7 +83,7 @@ class ComisariasController < ApplicationController
       render json: 'El contenido al que quiere acceder no pertenece a este usuario', :status =>:unauthorized
     end
 
-    if !current_usuario.comisaria?
+    if !current_usuario.is_comisaria?
       render json: 'El usuario no tiene permisos de comisaria', :status => :unauthorized
     end
 

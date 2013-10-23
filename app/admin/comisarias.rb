@@ -36,7 +36,7 @@ ActiveAdmin.register Comisaria do
       f.input :calle
       f.input :numero
       f.input :telefono
-      f.input :usuario, :collection => Usuario.all.select {|u| u.comisaria?}
+      f.input :usuario, :collection => Usuario.all.select {|u| u.is_comisaria?}
       f.input :localidades, :as => :check_boxes,
               :member_label => :form_name,
               :label => "Create a tracked accounts to",
