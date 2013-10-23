@@ -3,6 +3,7 @@ BAVWs::Application.routes.draw do
 
   devise_scope :usuario do
     post "login", :to => "sessions#login"
+    post "olvidePassword", :to => "passwords#create"
   end
 
   ActiveAdmin.routes(self)
@@ -17,6 +18,8 @@ BAVWs::Application.routes.draw do
 
   resources :usuarios do
     member do
+      get 'validarPassword', :to => 'usuarios#validar_password'
+      post 'password', :to => 'usuarios#actualizar_password'
       post 'bloqueo'
       post 'desbloqueo'
     end
