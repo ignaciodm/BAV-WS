@@ -26,12 +26,12 @@ class DenunciasController < ApplicationController
   end
 
   def update
-    format_denuncia_params
+    #format_denuncia_params
 
     #TODO validar usuario comisaria
     @denuncia = Denuncia.find(params[:id])
 
-    if @direccion.update_attributes(params[:direccion])
+    if @denuncia.update_attributes(params[:denuncia])
       render 'denuncias/show'
     else
       render json: camelcase_keys_from_a_hash(@denuncia.errors.messages), status: :bad_request
