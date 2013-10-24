@@ -39,6 +39,10 @@ class Usuario < ActiveRecord::Base
 
   before_create :add_authentication_token
 
+  def to_s
+    email
+  end
+
   private
   def add_authentication_token
     curr_date = DateTime.current().utc()

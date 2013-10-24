@@ -6,4 +6,8 @@ class Partido < ActiveRecord::Base
 
   validates :nombre, :presence => true
 
+  def to_s
+   "#{nombre} - #{provincia.nombre}"
+  end
+
 end

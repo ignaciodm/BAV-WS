@@ -16,4 +16,8 @@ class Comisaria < ActiveRecord::Base
   validates :numero, :numericality => true
   validates :telefono, :presence => true, :length => { :minimum => 2, maximum: 50}
 
+  def to_s
+    nombre
+  end
+
 end

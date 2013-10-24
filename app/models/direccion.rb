@@ -23,6 +23,12 @@ class Direccion < ActiveRecord::Base
   validates :departamento, :length => {:maximum => 25}
   validates :localidad_id, :presence => true
   validates :comisaria_id, :presence => true
+
+  def to_s
+    "#{descripcion} #{calle} #{numero}"
+  end
+
+
   #validates entre_calles
 
   #def entre_calles

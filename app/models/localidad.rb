@@ -9,6 +9,10 @@ class Localidad < ActiveRecord::Base
 
   validates :nombre, :presence => true
 
+  def to_s
+    "#{nombre} - #{partido.nombre} - #{partido.provincia.nombre}"
+  end
+
 
   def form_name
     "#{partido.provincia.nombre} | #{partido.nombre} | #{nombre}"
