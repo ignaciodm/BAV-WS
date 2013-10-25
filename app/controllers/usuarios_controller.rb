@@ -92,7 +92,7 @@ class UsuariosController < ApplicationController
     if !@usuario
       render json: {usuario: 'El usuario no existe'}, status: :not_found
     elsif !@usuario.valid_password?(params[:password])
-      render json: {password: 'Contrasenia invalidos'}, status: :unauthorized
+      render json: {password: 'Password incorrecto.'}, status: :bad_request
       else
 
         if params[:nuevaPassword].blank?
