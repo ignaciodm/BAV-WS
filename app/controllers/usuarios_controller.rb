@@ -79,31 +79,32 @@ class UsuariosController < ApplicationController
 
   end
 
-
   def actualizar_password
-    @usuario = Usuario.find_by_email(params[:email])
+    @usuario = Usuario.find(params[:id])
 
-    if !@usuario || !@usuario.valid_password?(params[:password])
-      render json: {email: 'Email o contrasenia invalidos', password: 'Email o contrasenia invalidos'}, status: :unauthorized
-    else
-
-      if params[:nuevaPassword].blank?
-        render json: { nuevaPassword: 'El nuevo password no puede ser vacio'}, status: :bad_request
-      elsif params[:nuevaPasswordConfirmacion].blank?
-        render json: { nuevaPasswordConfirmacion: 'La confirmacion del nuevo password no puede ser vacio' }, status: :bad_request
-      elsif params[:nuevaPassword] != params[:nuevaPasswordConfirmacion]
-        render json: { nuevaPassword: 'El nuevo password y la confirmacion no coinciden',
-                       nuevaPasswordConfirmacion: 'El nuevo password y la confirmacion no coinciden'}, status: :bad_request
+    if !@usuario
+      render json: {usuario: 'El usuario no existe'}, status: :not_found
+    elsif !@usuario.valid_password?(params[:password])
+      render json: {password: 'Contrasenia invalidos'}, status: :unauthorized
       else
-        @usuario.password = params[:nuevaPassword]
-        if @usuario.save
-          render 'usuarios/show'
-        else
-          render json: camelcase_keys_from_a_hash(@usuario.errors.messages), status: :bad_request
-        end
-      end
 
-    end
+        if params[:nuevaPassword].blank?
+          render json: { nuevaPassword: 'El nuevo password no puede ser vacio'}, status: :bad_request
+        elsif params[:nuevaPasswordConfirmacion].blank?
+          render json: { nuevaPasswordConfirmacion: 'La confirmacion del nuevo password no puede ser vacio' }, status: :bad_request
+        elsif params[:nuevaPassword] != params[:nuevaPasswordConfirmacion]
+          render json: { nuevaPassword: 'El nuevo password y la confirmacion no coinciden',
+                         nuevaPasswordConfirmacion: 'El nuevo password y la confirmacion no coinciden'}, status: :bad_request
+        else
+          @usuario.password = params[:nuevaPassword]
+          if @usuario.save
+            render 'usuarios/show'
+          else
+            render json: camelcase_keys_from_a_hash(@usuario.errors.messages), status: :bad_request
+          end
+        end
+
+      end
 
   end
 
