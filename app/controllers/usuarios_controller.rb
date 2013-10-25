@@ -28,8 +28,15 @@ class UsuariosController < ApplicationController
 
   def bloqueo
     @usuario = Usuario.find(params[:id])
-    @usuario.lock_access!
-    render 'usuarios/show'
+    Usuario.transaction do
+      @usuario.lock_access!
+      @usuario.denuncias.each do |denuncia|
+        denuncia.estado = 'c'
+        denuncia.save!
+      end
+
+      render 'usuarios/show'
+    end
   end
 
   def desbloqueo

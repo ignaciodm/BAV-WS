@@ -12,6 +12,7 @@ class Direccion < ActiveRecord::Base
                   :entre_calle_2,
                   :as => [:default, :admin]
 
+  has_many :denuncias
   belongs_to :localidad
   belongs_to :comisaria
   belongs_to :usuario

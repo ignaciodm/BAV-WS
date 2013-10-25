@@ -89,7 +89,7 @@ class DireccionesController < ApplicationController
 
   def validar_usuario
     usuario_id = (params[:usuario_id] || params[:id]).to_i
-    if current_usuario.id != usuario_id
+    if !current_usuario.admin? && current_usuario.id != usuario_id
       render status: :unauthorized, text: 'El contenido al que quiere acceder no pertenece a este usuario'
     end
   end

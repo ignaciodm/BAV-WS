@@ -43,6 +43,10 @@ class Usuario < ActiveRecord::Base
     email
   end
 
+  def denuncias
+    direcciones.map(&:denuncias).flatten.compact.uniq
+  end
+
   private
   def add_authentication_token
     curr_date = DateTime.current().utc()
