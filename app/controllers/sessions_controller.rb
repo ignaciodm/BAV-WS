@@ -19,7 +19,7 @@ class SessionsController < DeviseController
       render 'usuarios/show'
     else
       @usuario = Usuario.find_by_email(params[:email])
-      render 'usuarios/show', status: :unauthorized
+      render 'usuarios/show', status: :bad_request
     end
     #Srespond_with resource, :location => after_sign_in_path_for(resource)
   end
