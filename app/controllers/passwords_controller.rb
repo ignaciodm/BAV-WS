@@ -19,7 +19,7 @@ class PasswordsController < DeviseController
         render :json => {error: 'No se pudo enviar el mail para cambiar el password'}, status: :internal_server_error
       end
     else
-      render :json => {email: 'El email ingresado no se encuentra registrado en el sistema'}, status: :internal_server_error
+      render :json => {email: 'El email ingresado no se encuentra registrado en el sistema'}, status: :not_found
     end
   end
 
