@@ -1,7 +1,7 @@
-<p>Hola <%= @resource.email %>!</p>
+<p>Hola <%= @resource.nombre %>!</p>
 
-<p>Tu cuenta ha sido bloqueado debido a un excesivo numero de intentos fallidos de logueo.</p>
+<p>Tu cuenta ha sido bloqueada temporalmente debido a que se ingresó reiteradas veces una contraseña errónea al intentar iniciar sesión.</p>
 
-<p>Clickea en el siguiente enlace para desbloquear tu cuenta:</p>
+<p>Haz clic en el siguiente enlace para desbloquear tu cuenta:</p>
 
 <p><%= link_to 'Desbloquear mi cuenta', unlock_url(@resource, :unlock_token => @resource.unlock_token) %></p>
