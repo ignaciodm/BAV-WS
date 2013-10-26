@@ -1,5 +1,5 @@
 if direccion
-    json.(direccion, :id, :descripcion, :numero, :calle, :piso,:departamento)
+    json.(direccion, :id, :descripcion, :numero, :calle, :piso,:departamento,:comentarios)
     json.entreCalle1 direccion.entre_calle_1
     json.entreCalle2 direccion.entre_calle_2
 

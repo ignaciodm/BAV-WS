@@ -13,6 +13,7 @@ if usuario
     end
     json.authToken  usuario.authentication_token
     json.bloqueado usuario.access_locked?
+    json.isComisaria usuario.is_comisaria
 end
 
 
