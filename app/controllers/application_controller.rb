@@ -7,12 +7,22 @@ module Devise::Controllers::Helpers
   end
 end
 
+class UsuarioBloqueadoException < Exception
+
+  def to_s
+    "El usuario fue bloqueado por una comisaria, y no puede hacer uso de la aplicacion"
+  end
+
+end
+
 class ApplicationController < ActionController::Base
   include ApplicationHelper
 
   protect_from_forgery
 
   before_filter :authenticate_usuario! #, :unless => :active_admin_controller? #Condition added to identify if a redirect loop ocurrs in production environment
+
+  rescue_from UsuarioBloqueadoException, with: :usuario_bloqueado_comisaria_response
 
   #skip_before_filter :verify_authenticity_token, :if => Proc.new { |c| c.request.format == 'application/json' }
   #
@@ -38,7 +48,17 @@ class ApplicationController < ActionController::Base
     ret
   end
 
-  private
+  protected
+
+  def usuario_bloqueado_comisaria_response(exception)
+    render json: exception.message, status: :forbidden
+  end
+
+  def validar_usuario_bloqueado
+    if current_usuario.bloqueado_comisaria
+      raise UsuarioBloqueadoException
+    end
+  end
 
   def authenticate_admin_user!
     authenticate_usuario!

@@ -20,6 +20,7 @@ class Usuario < ActiveRecord::Base
                   :direcciones,
                   :confirmed_at,
                   :is_comisaria,
+                  :bloqueado_comisaria,
                   :as => [:default, :admin]
 
   attr_accessible :admin, as: :admin
@@ -47,10 +48,33 @@ class Usuario < ActiveRecord::Base
     direcciones.map(&:denuncias).flatten.compact.uniq
   end
 
+  def blocked_in_comisaria!
+    Usuario.transaction do
+      self.bloqueado_comisaria = true
+      self.save!
+
+      denuncias.each do |denuncia|
+        denuncia.estado = 'c'
+        denuncia.save!
+      end
+
+      UsuarioMailer.bloqueado_comisaria_email(self).deliver
+    end
+  end
+
+  def unblocked_in_comisaria!
+    Usuario.transaction do
+      self.bloqueado_comisaria = false
+      self.save!
+      UsuarioMailer.desbloqueado_comisaria_email(self).deliver
+    end
+  end
+
   private
   def add_authentication_token
     curr_date = DateTime.current().utc()
     self.authentication_token = Digest::SHA1.hexdigest(self.email + curr_date.to_s)
   end
+
 
 end

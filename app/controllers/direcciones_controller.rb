@@ -4,6 +4,8 @@ class DireccionesController < ApplicationController
 
   before_filter :validar_usuario
 
+  before_filter :validar_usuario_bloqueado
+
 
   def index
     @direcciones = Direccion.find_all_by_usuario_id(params[:usuario_id])
@@ -40,7 +42,6 @@ class DireccionesController < ApplicationController
   def edit
     @direccion = Direccion.find(params[:id])
   end
-
   # POST /direcciones
   # POST /direcciones.json
   def create

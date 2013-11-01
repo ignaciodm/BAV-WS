@@ -3,7 +3,6 @@ class SessionsController < DeviseController
   prepend_before_filter :require_no_authentication, :only => [:login ]
   prepend_before_filter :allow_params_authentication!, :only => :login
 
-
   respond_to :json
 
   def login

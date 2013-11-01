@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131023000820) do
+ActiveRecord::Schema.define(:version => 20131030005542) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -130,6 +130,7 @@ ActiveRecord::Schema.define(:version => 20131023000820) do
     t.string   "telefono",               :limit => 50,                    :null => false
     t.date     "fecha_de_nacimiento",                                     :null => false
     t.boolean  "is_comisaria",                         :default => false
+    t.boolean  "bloqueado_comisaria",                  :default => false
   end
 
   add_index "usuarios", ["authentication_token"], :name => "index_usuarios_on_authentication_token", :unique => true

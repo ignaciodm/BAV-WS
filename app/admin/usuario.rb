@@ -6,6 +6,12 @@ ActiveAdmin.register Usuario do
     column :sign_in_count
     column :admin
     column :comisaria
+    column :bloqueado_comisaria
+    column :bloquear, :as => :block do |usuario|
+      div do
+        link_to "#{usuario.bloqueado_comisaria ? 'Desbloquear': 'Bloquear'}", "#" , :id => "bloqueo-#{usuario.id}", :class => "#{usuario.bloqueado_comisaria ? 'js-desbloqueo': 'js-bloqueo'}"
+      end
+    end
     default_actions
   end                                 
 
@@ -23,7 +29,7 @@ ActiveAdmin.register Usuario do
       f.input :password_confirmation
       f.input :admin
       f.input :is_comisaria
-    end                               
+    end
     f.actions                         
   end                                 
 end                                   

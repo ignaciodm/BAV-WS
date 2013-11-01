@@ -2,6 +2,8 @@ class DenunciasController < ApplicationController
 
   #before_filter :validar_usuario
 
+  before_filter :validar_usuario_bloqueado
+
 
   def index
     @denuncias = Denuncia.find_all_by_comisaria_id(params[:comisariaId])

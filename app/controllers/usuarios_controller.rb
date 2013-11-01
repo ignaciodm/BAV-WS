@@ -2,6 +2,7 @@ class UsuariosController < ApplicationController
 
   skip_before_filter :authenticate_usuario!, :only => [:create]
 
+  before_filter :validar_usuario_bloqueado
 
   def index
     @usuarios = Usuario.all
@@ -28,21 +29,28 @@ class UsuariosController < ApplicationController
 
   def bloqueo
     @usuario = Usuario.find(params[:id])
-    Usuario.transaction do
-      @usuario.lock_access!
-      @usuario.denuncias.each do |denuncia|
-        denuncia.estado = 'c'
-        denuncia.save!
-      end
 
+    begin
+      @usuario.blocked_in_comisaria!
       render 'usuarios/show'
+    rescue => e
+      logger.error(e.message)
+      render json: {error: e.message}, status: :internal_server_error
     end
+
   end
 
   def desbloqueo
     @usuario = Usuario.find(params[:id])
-    @usuario.unlock_access!
-    render 'usuarios/show'
+
+    begin
+      @usuario.unblocked_in_comisaria!
+      render 'usuarios/show'
+    rescue => e
+      logger.error(e.message)
+      render json: {error: e.message}, status: :internal_server_error
+    end
+
   end
 
   def update
