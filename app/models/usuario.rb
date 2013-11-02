@@ -70,11 +70,14 @@ class Usuario < ActiveRecord::Base
     end
   end
 
+  def edad
+    DateTime.now.year - fecha_de_nacimiento.year
+  end
+
   private
   def add_authentication_token
     curr_date = DateTime.current().utc()
     self.authentication_token = Digest::SHA1.hexdigest(self.email + curr_date.to_s)
   end
-
 
 end

@@ -26,7 +26,7 @@ class Direccion < ActiveRecord::Base
   validates :comisaria_id, :presence => true
 
   def to_s
-    "#{descripcion} #{calle} #{numero}"
+    "#{descripcion} #{calle} #{numero} #{piso} #{departamento}"
   end
 
 

@@ -1,5 +1,9 @@
 ActiveAdmin.register Localidad do
 
+  menu :if => Proc.new { |c|
+    current_usuario.admin?
+  }
+
   index do |f|
     column :id
     column :nombre

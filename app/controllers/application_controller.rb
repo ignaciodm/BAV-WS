@@ -62,7 +62,7 @@ class ApplicationController < ActionController::Base
 
   def authenticate_admin_user!
     authenticate_usuario!
-    unless current_usuario.admin?
+    if !current_usuario.admin? && !current_usuario.is_comisaria?
       redirect_to root_path
     end
   end

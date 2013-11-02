@@ -1,11 +1,16 @@
 ActiveAdmin.register Usuario do
+
+  menu :if => Proc.new { |c|
+    current_usuario.admin?
+  }
+
   index do                            
     column :email                     
     column :current_sign_in_at        
     column :last_sign_in_at           
     column :sign_in_count
     column :admin
-    column :comisaria
+    column :is_comisaria
     column :bloqueado_comisaria
     column :bloquear, :as => :block do |usuario|
       div do
