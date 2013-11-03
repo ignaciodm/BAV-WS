@@ -55,7 +55,7 @@ class ApplicationController < ActionController::Base
   end
 
   def validar_usuario_bloqueado
-    if current_usuario.bloqueado_comisaria
+    if current_usuario && current_usuario.bloqueado_comisaria
       raise UsuarioBloqueadoException
     end
   end
