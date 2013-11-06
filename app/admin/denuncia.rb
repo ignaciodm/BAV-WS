@@ -36,7 +36,7 @@ ActiveAdmin.register Denuncia do
           end
           column :usuario do |denuncia|
 
-            u = denuncia.direccion.usuario
+            u = denuncia.direccion && denuncia.direccion.usuario
 
             if u
               s = "#{u.nombre} #{u.apellido} (#{u.edad})"
