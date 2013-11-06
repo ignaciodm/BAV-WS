@@ -1,5 +1,5 @@
 class UsuarioMailer < ActionMailer::Base
-  default from: "from@example.com"
+  default from: "noreply@proyectotea.com"
 
   def bloqueado_comisaria_email(usuario)
     @usuario = usuario

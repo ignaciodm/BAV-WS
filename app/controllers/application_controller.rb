@@ -1,3 +1,5 @@
+#encoding: utf-8
+
 module Devise::Controllers::Helpers
   #Monkey Patching devise_controller? methods.
   # A veces en tiempo de ejecucion un controller que heredaba de DeviseController pasa a heredar de otro
@@ -10,7 +12,7 @@ end
 class UsuarioBloqueadoException < Exception
 
   def to_s
-    "El usuario fue bloqueado por una comisaria, y no puede hacer uso de la aplicacion"
+    "El usuario fue bloqueado por una comisaría, y no puede hacer uso de la aplicación. Verifique su cuenta de email para más información."
   end
 
 end
