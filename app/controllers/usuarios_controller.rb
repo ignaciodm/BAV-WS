@@ -13,9 +13,9 @@ class UsuariosController < ApplicationController
       end
     end
 
-    if params[:bloqueado]
-      bloqueado = params[:bloqueado] == 'true'
-      @usuarios = @usuarios.select { |u| u.access_locked? == bloqueado}
+    if params[:bloqueadoComisaria]
+      bloqueado = params[:bloqueadoComisaria] == 'true'
+      @usuarios = @usuarios.select { |u| u.bloqueado_comisaria == bloqueado}
     end
 
     render 'usuarios/index'
